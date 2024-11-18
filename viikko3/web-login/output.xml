@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.12.3 on linux)" generated="2024-11-17T21:46:31.995546" rpa="false" schemaversion="5">
+<suite id="s1" name="Register" source="/home/matiaspa/hy/ohjelmistotuotanto/palautusrepositorio/viikko3/web-login/src/tests/register.robot">
+<kw name="Open And Configure Browser" owner="resource" type="SETUP">
+<if>
+<branch type="IF" condition="$BROWSER == 'chrome'">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-17T21:46:32.090016" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x7a8d98b02a50&gt;</msg>
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-17T21:46:32.089789" elapsed="0.000254"/>
+</kw>
+<status status="PASS" start="2024-11-17T21:46:32.089369" elapsed="0.000729"/>
+</branch>
+<branch type="ELSE IF" condition="$BROWSER == 'firefox'">
+<kw name="Evaluate" owner="BuiltIn">
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].FirefoxOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2024-11-17T21:46:32.090210" elapsed="0.000018"/>
+</kw>
+<status status="NOT RUN" start="2024-11-17T21:46:32.090131" elapsed="0.000124"/>
+</branch>
+<status status="PASS" start="2024-11-17T21:46:32.089351" elapsed="0.000924"/>
+</if>
+<if>
+<branch type="IF" condition="$HEADLESS == 'true'">
+<kw name="Set Selenium Speed" owner="SeleniumLibrary">
+<arg>0</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="NOT RUN" start="2024-11-17T21:46:32.090428" elapsed="0.000014"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--headless</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="NOT RUN" start="2024-11-17T21:46:32.090495" elapsed="0.000013"/>
+</kw>
+<status status="NOT RUN" start="2024-11-17T21:46:32.090317" elapsed="0.000212"/>
+</branch>
+<branch type="ELSE">
+<kw name="Set Selenium Speed" owner="SeleniumLibrary">
+<arg>${DELAY}</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" start="2024-11-17T21:46:32.090593" elapsed="0.000154"/>
+</kw>
+<status status="PASS" start="2024-11-17T21:46:32.090546" elapsed="0.000226"/>
+</branch>
+<status status="PASS" start="2024-11-17T21:46:32.090308" elapsed="0.000481"/>
+</if>
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-11-17T21:46:32.090988" level="INFO">Opening browser 'chrome' to base url 'None'.</msg>
+<arg>browser=${BROWSER}</arg>
+<arg>options=${options}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-11-17T21:46:32.090849" elapsed="0.396832"/>
+</kw>
+<status status="PASS" start="2024-11-17T21:46:32.089216" elapsed="0.398569"/>
+</kw>
+<test id="s1-t1" name="Register With Valid Username And Password" line="9">
+<kw name="Reset Application Create User And Go To Register Page" type="SETUP">
+<kw name="Reset Application" owner="AppLibrary">
+<status status="PASS" start="2024-11-17T21:46:32.488409" elapsed="0.002887"/>
+</kw>
+<kw name="Create User" owner="AppLibrary">
+<arg>valid_username</arg>
+<arg>valid_password</arg>
+<status status="PASS" start="2024-11-17T21:46:32.491524" elapsed="0.006433"/>
+</kw>
+<kw name="Go To Register Page">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2024-11-17T21:46:32.498965" level="INFO">Opening url 'http://localhost:5001/register'</msg>
+<arg>${REGISTER_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2024-11-17T21:46:32.498833" elapsed="0.544593"/>
+</kw>
+<status status="PASS" start="2024-11-17T21:46:32.498550" elapsed="0.545024"/>
+</kw>
+<status status="PASS" start="2024-11-17T21:46:32.488214" elapsed="0.555419"/>
+</kw>
+<kw name="Create User" owner="AppLibrary">
+<arg>valid_username</arg>
+<arg>valid_password</arg>
+<status status="PASS" start="2024-11-17T21:46:33.043827" elapsed="0.004750"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-17T21:46:33.049163" level="INFO">Typing text 'valid_username' into text field 'id=username'.</msg>
+<arg>id=username</arg>
+<arg>valid_username</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-17T21:46:33.048823" elapsed="1.573476"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-17T21:46:34.622789" level="INFO">Typing text 'valid_password' into text field 'id=password_confirmation'.</msg>
+<arg>id=password_confirmation</arg>
+<arg>valid_password</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-17T21:46:34.622578" elapsed="1.553854"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-11-17T21:46:36.176897" level="INFO">Clicking button 'register_button'.</msg>
+<arg>register_button</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-17T21:46:36.176695" elapsed="2.061093"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<msg time="2024-11-17T21:46:44.432848" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-16.png"&gt;&lt;img src="selenium-screenshot-16.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2024-11-17T21:46:44.432971" level="FAIL">Element 'id=welcome_message' not visible after 5 seconds.</msg>
+<arg>id=welcome_message</arg>
+<arg>5</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="FAIL" start="2024-11-17T21:46:38.238039" elapsed="6.195468">Element 'id=welcome_message' not visible after 5 seconds.</status>
+</kw>
+<kw name="Highlight Element">
+<arg>id=welcome_message</arg>
+<status status="NOT RUN" start="2024-11-17T21:46:44.433684" elapsed="0.000023"/>
+</kw>
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<arg>id=welcome_message</arg>
+<arg>"Registration successful"</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="NOT RUN" start="2024-11-17T21:46:44.433811" elapsed="0.000021"/>
+</kw>
+<status status="FAIL" start="2024-11-17T21:46:32.487864" elapsed="11.946106">Element 'id=welcome_message' not visible after 5 seconds.</status>
+</test>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2024-11-17T21:46:44.434508" elapsed="0.569232"/>
+</kw>
+<status status="FAIL" start="2024-11-17T21:46:31.996020" elapsed="13.007787"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Register">Register</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
